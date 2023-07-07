@@ -1,0 +1,38 @@
+[gd_scene load_steps=7 format=3 uid="uid://bmwt521u6nnlh"]
+
+[ext_resource type="Script" path="res://Scripts/1.gd" id="1_dclqp"]
+[ext_resource type="PackedScene" uid="uid://lu8ds8g11asq" path="res://Prefabs/player.tscn" id="1_racmd"]
+[ext_resource type="PackedScene" uid="uid://cvexdp5bta3nx" path="res://Prefabs/UI.tscn" id="2_db4n8"]
+[ext_resource type="Texture2D" uid="uid://dwsrftvduhtfn" path="res://Assets/wall.png" id="4_hr1pe"]
+[ext_resource type="PackedScene" uid="uid://dq5qduwy80lu8" path="res://Prefabs/transform_obj.tscn" id="5_gac0d"]
+[ext_resource type="Texture2D" uid="uid://y7scvckkhp3o" path="res://Assets/box.png" id="5_lnonc"]
+
+[node name="1" type="Node2D"]
+script = ExtResource("1_dclqp")
+
+[node name="player" parent="." instance=ExtResource("1_racmd")]
+position = Vector2(77, 183)
+
+[node name="Wall" type="Sprite2D" parent="."]
+position = Vector2(1056, 469)
+scale = Vector2(20, 20)
+texture = ExtResource("4_hr1pe")
+
+[node name="wall_area" parent="Wall" instance=ExtResource("5_gac0d")]
+
+[node name="Box" type="Sprite2D" parent="."]
+position = Vector2(632.5, 516.5)
+scale = Vector2(5.28125, 5.46875)
+texture = ExtResource("5_lnonc")
+
+[node name="wall_area" parent="Box" instance=ExtResource("5_gac0d")]
+
+[node name="CollisionPolygon2D" parent="Box/wall_area" index="0"]
+polygon = PackedVector2Array(-16.1893, -16, -16, 15.8171, 15.8106, 16.1829, 16.1894, -15.8171)
+
+[node name="UI" parent="." instance=ExtResource("2_db4n8")]
+
+[connection signal="mouse_entered" from="Wall/wall_area" to="UI" method="_on_wall_area_mouse_entered"]
+[connection signal="mouse_entered" from="Box/wall_area" to="UI" method="_on_box_area_entered"]
+
+[editable path="Box/wall_area"]

@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://cvexdp5bta3nx"]
+
+[ext_resource type="Script" path="res://Scripts/transform.gd" id="1_o5j40"]
+[ext_resource type="Texture2D" uid="uid://briu3ak7itao1" path="res://Assets/corsair.png" id="2_u1d5f"]
+
+[node name="UI" type="Node2D"]
+process_mode = 3
+script = ExtResource("1_o5j40")
+
+[node name="reverse" type="Button" parent="."]
+process_mode = 3
+offset_left = 50.0
+offset_top = 50.0
+offset_right = 242.0
+offset_bottom = 104.0
+text = "Reverse Roles"
+
+[node name="Corsair" type="Sprite2D" parent="."]
+process_mode = 3
+visible = false
+position = Vector2(877, 365)
+scale = Vector2(2, 2)
+texture = ExtResource("2_u1d5f")
+
+[connection signal="pressed" from="reverse" to="." method="_on_reverse_pressed"]

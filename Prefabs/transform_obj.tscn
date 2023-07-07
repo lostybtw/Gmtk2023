@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://dq5qduwy80lu8"]
+
+[node name="wall_area" type="Area2D" groups=["moveable_wall"]]
+process_mode = 3
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-15.95, -14.75, -15.95, -18.35, 21.05, -19.15, 21.55, 15.85, -15.8, 16.05, -15.95, 14.75, 13.05, 11.25, 14.6, -15)
