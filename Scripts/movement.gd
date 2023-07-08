@@ -28,3 +28,7 @@ func move():
 		GlobalVariables.movebody.move_and_slide()
 func _physics_process(delta):
 	move()
+
+
+func _on_wall_area_mouse_entered():
+	pass # Replace with function body.

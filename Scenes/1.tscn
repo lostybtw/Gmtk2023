@@ -1,10 +1,23 @@
-[gd_scene load_steps=7 format=3 uid="uid://bmwt521u6nnlh"]
+[gd_scene load_steps=11 format=3 uid="uid://bmwt521u6nnlh"]
 
 [ext_resource type="Script" path="res://Scripts/1.gd" id="1_dclqp"]
 [ext_resource type="PackedScene" uid="uid://lu8ds8g11asq" path="res://Prefabs/player.tscn" id="1_racmd"]
 [ext_resource type="PackedScene" uid="uid://cvexdp5bta3nx" path="res://Prefabs/UI.tscn" id="2_db4n8"]
-[ext_resource type="TileSet" uid="uid://cnm62v2h0rfb7" path="res://Prefabs/tiles.tres" id="3_nnj4b"]
+[ext_resource type="PackedScene" uid="uid://v1ajtejv0ou7" path="res://Prefabs/bg.tscn" id="2_vbo0w"]
+[ext_resource type="TileSet" uid="uid://huffbxkh41s7" path="res://Scenes/2.tres" id="3_pxdxj"]
 [ext_resource type="PackedScene" uid="uid://dq5qduwy80lu8" path="res://Prefabs/transform_obj.tscn" id="5_gac0d"]
+[ext_resource type="AudioStream" uid="uid://djhekuj2jbpyy" path="res://Assets/song1.wav" id="7_ipawk"]
+
+[sub_resource type="Gradient" id="Gradient_n63lg"]
+offsets = PackedFloat32Array(0, 0.76129)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_463wo"]
+gradient = SubResource("Gradient_n63lg")
+width = 500
+height = 500
+fill = 1
+fill_from = Vector2(0.5, 0.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e5vpk"]
 size = Vector2(46.5, 63.5)
@@ -12,14 +25,24 @@ size = Vector2(46.5, 63.5)
 [node name="1" type="Node2D"]
 script = ExtResource("1_dclqp")
 
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(2522, 577)
+color = Color(0.678431, 0.298039, 0.0588235, 1)
+energy = 3.0
+texture = SubResource("GradientTexture2D_463wo")
+
+[node name="bg" parent="." instance=ExtResource("2_vbo0w")]
+
 [node name="Wall" type="CharacterBody2D" parent="."]
+modulate = Color(1, 0.384314, 0.239216, 1)
+self_modulate = Color(1, 0.654902, 0.615686, 1)
 
 [node name="TileMap" type="TileMap" parent="Wall"]
 position = Vector2(960, 540)
 scale = Vector2(4, 4)
-tile_set = ExtResource("3_nnj4b")
+tile_set = ExtResource("3_pxdxj")
 format = 2
-layer_0/tile_data = PackedInt32Array(327693, 1, 0, 327694, 1, 0, 262157, 1, 0, 262158, 1, 0, 196622, 1, 0, 196621, 1, 0, 131085, 1, 0, 131086, 1, 0, 65550, 1, 0, 65549, 1, 0, 13, 1, 0, 14, 1, 0, -65522, 1, 0, -65523, 1, 0, -131059, 1, 0, -131058, 1, 0, -196594, 1, 0, -196595, 1, 0, -262131, 1, 0, -262130, 1, 0, -327666, 1, 0, -327667, 1, 0, -393203, 1, 0, -393202, 1, 0)
+layer_0/tile_data = PackedInt32Array(327693, 0, 0, 327694, 0, 0, 262158, 0, 0, 262157, 0, 0, 196621, 0, 0, 196622, 0, 0, 131086, 0, 0, 131085, 0, 0, 65549, 0, 0, 65550, 0, 0, 14, 0, 0, -65522, 0, 0, -65523, 0, 0, -131059, 0, 0, -196595, 0, 0, -262131, 0, 0, -327667, 0, 0, -393203, 0, 0, -393202, 0, 0, -327666, 0, 0, -262130, 0, 0, -196594, 0, 0, -131058, 0, 0, 13, 0, 0)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Wall"]
 polygon = PackedVector2Array(1792, 157, 1919, 159, 1913, 923, 1797, 921, 1792, 157)
@@ -32,13 +55,15 @@ scale = Vector2(27.5533, 23.0417)
 polygon = PackedVector2Array(29.6153, 11.0235, 34.1883, 11.1103, 34.406, -22.3942, 29.7605, -22.3942)
 
 [node name="Wall2" type="CharacterBody2D" parent="."]
+modulate = Color(1, 0.384314, 0.239216, 1)
+self_modulate = Color(1, 0.654902, 0.615686, 1)
 
 [node name="TileMap" type="TileMap" parent="Wall2"]
 position = Vector2(960, 540)
 scale = Vector2(4, 4)
-tile_set = ExtResource("3_nnj4b")
+tile_set = ExtResource("3_pxdxj")
 format = 2
-layer_0/tile_data = PackedInt32Array(-458762, 1, 0, -458761, 1, 0, -458760, 1, 0, -458759, 1, 0, -458758, 1, 0, -458757, 1, 0, -458756, 1, 0, -458755, 1, 0, -458754, 1, 0, -458753, 1, 0, -524288, 1, 0, -524287, 1, 0, -524286, 1, 0, -524285, 1, 0, -524284, 1, 0, -524283, 1, 0, -524282, 1, 0, -524281, 1, 0, -524280, 1, 0, -524279, 1, 0, -524278, 1, 0, -524277, 1, 0, -524276, 1, 0, -524275, 1, 0, -458742, 1, 0, -458743, 1, 0, -458741, 1, 0, -458740, 1, 0, -393222, 1, 0, -393220, 1, 0, -393219, 1, 0, -393218, 1, 0, -393221, 1, 0, -393217, 1, 0, -458752, 1, 0, -458751, 1, 0, -458750, 1, 0, -458749, 1, 0, -458748, 1, 0, -458747, 1, 0, -458746, 1, 0, -458745, 1, 0, -458744, 1, 0, 393229, 1, 0, 393230, 1, 0, 458766, 1, 0, 458765, 1, 0, 458764, 1, 0, 458763, 1, 0, 458762, 1, 0, 458761, 1, 0, 458760, 1, 0, 458759, 1, 0, 393228, 1, 0, 393227, 1, 0, 393226, 1, 0, 393225, 1, 0, 393224, 1, 0, 393223, 1, 0, 458743, 1, 0, 458744, 1, 0, 458745, 1, 0, 458746, 1, 0, 458747, 1, 0, 458748, 1, 0, 458749, 1, 0, 458750, 1, 0, 458751, 1, 0, 393216, 1, 0, 393217, 1, 0, 393218, 1, 0, 393219, 1, 0, 393220, 1, 0, 393221, 1, 0, 393222, 1, 0, 458758, 1, 0, 458757, 1, 0, 458756, 1, 0, 458755, 1, 0, 458754, 1, 0, 458753, 1, 0, 458752, 1, 0, 524287, 1, 0, 524286, 1, 0, 524285, 1, 0, 524284, 1, 0, 524283, 1, 0, 524282, 1, 0, 524281, 1, 0, 524280, 1, 0, 524279, 1, 0, -327692, 1, 0, -262156, 1, 0, -196620, 1, 0, -131084, 1, 0, -65548, 1, 0, -12, 1, 0, 65524, 1, 0, 131060, 1, 0, 196596, 1, 0, 262132, 1, 0, 327668, 1, 0, 393204, 1, 0, 458740, 1, 0, 458741, 1, 0, 458742, 1, 0, 524278, 1, 0, 524277, 1, 0, 524276, 1, 0, -393227, 1, 0, -393228, 1, 0, -327691, 1, 0, -262155, 1, 0, -196619, 1, 0, -65547, 1, 0, -131083, 1, 0, -11, 1, 0, 65525, 1, 0, 196597, 1, 0, 262133, 1, 0, 327669, 1, 0, 393205, 1, 0, 131061, 1, 0, -458763, 1, 0, -458764, 1, 0, -524274, 1, 0, -458738, 1, 0, -458739, 1, 0, -393223, 1, 0, -393226, 1, 0, -393225, 1, 0, -393224, 1, 0)
+layer_0/tile_data = PackedInt32Array(-458762, 0, 0, -458761, 0, 0, -458760, 0, 0, -458759, 0, 0, -458758, 0, 0, -458757, 0, 0, -458756, 0, 0, -458755, 0, 0, -458754, 0, 0, -458753, 0, 0, -524288, 0, 0, -524287, 0, 0, -524286, 0, 0, -524285, 0, 0, -524284, 0, 0, -524283, 0, 0, -524282, 0, 0, -524281, 0, 0, -524280, 0, 0, -524279, 0, 0, -524278, 0, 0, -524277, 0, 0, -524276, 0, 0, -524275, 0, 0, -458742, 0, 0, -458743, 0, 0, -458741, 0, 0, -458740, 0, 0, -393222, 0, 0, -393220, 0, 0, -393219, 0, 0, -393218, 0, 0, -393221, 0, 0, -393217, 0, 0, -458752, 0, 0, -458751, 0, 0, -458750, 0, 0, -458749, 0, 0, -458748, 0, 0, -458747, 0, 0, -458746, 0, 0, -458745, 0, 0, -458744, 0, 0, 393229, 0, 0, 458764, 0, 0, 458763, 0, 0, 458762, 0, 0, 458761, 0, 0, 458760, 0, 0, 458759, 0, 0, 393228, 0, 0, 393227, 0, 0, 393226, 0, 0, 393225, 0, 0, 393224, 0, 0, 393223, 0, 0, 458743, 0, 0, 458744, 0, 0, 458745, 0, 0, 458746, 0, 0, 458747, 0, 0, 458748, 0, 0, 458749, 0, 0, 458750, 0, 0, 458751, 0, 0, 393216, 0, 0, 393217, 0, 0, 393218, 0, 0, 393219, 0, 0, 393220, 0, 0, 393221, 0, 0, 393222, 0, 0, 458758, 0, 0, 458757, 0, 0, 458756, 0, 0, 458755, 0, 0, 458754, 0, 0, 458753, 0, 0, 458752, 0, 0, 524287, 0, 0, 524286, 0, 0, 524285, 0, 0, 524284, 0, 0, 524283, 0, 0, 524282, 0, 0, 524281, 0, 0, 524280, 0, 0, 524279, 0, 0, -327692, 0, 0, -262156, 0, 0, -196620, 0, 0, -131084, 0, 0, -65548, 0, 0, -12, 0, 0, 65524, 0, 0, 131060, 0, 0, 196596, 0, 0, 262132, 0, 0, 327668, 0, 0, 393204, 0, 0, 458740, 0, 0, 458741, 0, 0, 458742, 0, 0, 524278, 0, 0, 524277, 0, 0, 524276, 0, 0, -393227, 0, 0, -393228, 0, 0, -327691, 0, 0, -262155, 0, 0, -196619, 0, 0, -65547, 0, 0, -131083, 0, 0, -11, 0, 0, 65525, 0, 0, 196597, 0, 0, 262133, 0, 0, 327669, 0, 0, 393205, 0, 0, 131061, 0, 0, -458763, 0, 0, -458764, 0, 0, -524274, 0, 0, -458738, 0, 0, -458739, 0, 0, -393223, 0, 0, -393226, 0, 0, -393225, 0, 0, -393224, 0, 0, 393230, 0, 0, 458766, 0, 0, 458765, 0, 0)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Wall2"]
 polygon = PackedVector2Array(322, 156, 320, 921, 1913, 935, 1920, 1049, 193, 1053, 192.073, 102.769, 192, 28, 1919, 28, 1915, 159)
@@ -51,14 +76,16 @@ scale = Vector2(27.5533, 23.0417)
 polygon = PackedVector2Array(-19.5258, -27.5153, -19.2354, 17.0126, 42.9713, 17.273, 42.9713, 11.9783, -14.7351, 11.8047, -14.8077, -21.5262, 43.189, -21.3526, 43.1164, -26.9077)
 
 [node name="goal" type="CharacterBody2D" parent="."]
+modulate = Color(1, 0.384314, 0.239216, 1)
+self_modulate = Color(1, 0.654902, 0.615686, 1)
 position = Vector2(128, 194)
 scale = Vector2(2, 2)
 
 [node name="TileMap" type="TileMap" parent="goal"]
 scale = Vector2(2, 2)
-tile_set = ExtResource("3_nnj4b")
+tile_set = ExtResource("3_pxdxj")
 format = 2
-layer_0/tile_data = PackedInt32Array(393253, 65537, 0, 65564, 1, 0, 65565, 1, 0, 65566, 1, 0, 65567, 1, 0, 65568, 1, 0, 65569, 1, 0, 65570, 1, 0, 65571, 1, 0, 65572, 1, 0, 65573, 1, 0, 655397, 1, 0, 655396, 1, 0, 655395, 1, 0, 655394, 1, 0, 655393, 1, 0, 655392, 1, 0, 655391, 1, 0, 655390, 1, 0, 655389, 1, 0, 655388, 1, 0, 327717, 65537, 0, 131109, 1, 0, 196645, 1, 0, 262181, 1, 0, 458789, 1, 0, 524325, 1, 0, 589861, 1, 0)
+layer_0/tile_data = PackedInt32Array(393253, 65536, 0, 65564, 0, 0, 65565, 0, 0, 65566, 0, 0, 65567, 0, 0, 65568, 0, 0, 65569, 0, 0, 65570, 0, 0, 65571, 0, 0, 65572, 0, 0, 65573, 0, 0, 655397, 0, 0, 655396, 0, 0, 655395, 0, 0, 655394, 0, 0, 655393, 0, 0, 655392, 0, 0, 655391, 0, 0, 655390, 0, 0, 655389, 0, 0, 655388, 0, 0, 327717, 65536, 0, 131109, 0, 0, 196645, 0, 0, 262181, 0, 0, 458789, 0, 0, 524325, 0, 0, 589861, 0, 0)
 
 [node name="wall_area" parent="goal" instance=ExtResource("5_gac0d")]
 
@@ -76,6 +103,7 @@ polygon = PackedVector2Array(895.5, 95.5, 1216.5, 96, 1215.5, 414, 897, 413, 897
 [node name="CollisionShape2D" type="CollisionShape2D" parent="goal/door"]
 position = Vector2(1194.25, 191.75)
 shape = SubResource("RectangleShape2D_e5vpk")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
 
 [node name="player" parent="." instance=ExtResource("1_racmd")]
 position = Vector2(128, 194)
@@ -106,6 +134,12 @@ Click Some Buttons or something, I don't really know.
 WASD to move
 left mouse button to click buttons
 Pro Tip: red crossair = walls"
+
+[node name="music" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("7_ipawk")
+volume_db = -5.0
+autoplay = true
 
 [connection signal="mouse_entered" from="Wall/wall_area" to="player/UI" method="_on_wall_area_mouse_entered"]
 [connection signal="mouse_entered" from="Wall2/wall_area" to="player/UI" method="_on_wall_area_2_mouse_entered"]

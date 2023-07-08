@@ -1,0 +1,38 @@
+[gd_scene load_steps=4 format=3 uid="uid://dqpqfwdafqk76"]
+
+[ext_resource type="TileSet" uid="uid://cnm62v2h0rfb7" path="res://Prefabs/tiles.tres" id="1_w1l8o"]
+[ext_resource type="PackedScene" uid="uid://dq5qduwy80lu8" path="res://Prefabs/transform_obj.tscn" id="2_nsaig"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e5vpk"]
+size = Vector2(46.5, 63.5)
+
+[node name="goal" type="CharacterBody2D"]
+modulate = Color(1, 0.384314, 0.239216, 1)
+self_modulate = Color(1, 0.654902, 0.615686, 1)
+position = Vector2(128, 194)
+scale = Vector2(2, 2)
+
+[node name="TileMap" type="TileMap" parent="."]
+scale = Vector2(2, 2)
+tile_set = ExtResource("1_w1l8o")
+format = 2
+layer_0/tile_data = PackedInt32Array(393253, 65537, 0, 65564, 1, 0, 65565, 1, 0, 65566, 1, 0, 65567, 1, 0, 65568, 1, 0, 65569, 1, 0, 65570, 1, 0, 65571, 1, 0, 65572, 1, 0, 65573, 1, 0, 655397, 1, 0, 655396, 1, 0, 655395, 1, 0, 655394, 1, 0, 655393, 1, 0, 655392, 1, 0, 655391, 1, 0, 655390, 1, 0, 655389, 1, 0, 655388, 1, 0, 327717, 65537, 0, 131109, 1, 0, 196645, 1, 0, 262181, 1, 0, 458789, 1, 0, 524325, 1, 0, 589861, 1, 0)
+
+[node name="wall_area" parent="." instance=ExtResource("2_nsaig")]
+
+[node name="CollisionPolygon2D" parent="wall_area" index="0"]
+position = Vector2(300, 283.5)
+scale = Vector2(27.5533, 23.0417)
+polygon = PackedVector2Array(21.7215, 2.84267, 33.2809, 2.88607, 33.3717, -10.7631, 21.6308, -10.8065, 21.6489, -9.48281, 32.0651, -9.52621, 32.0651, 1.43219, 21.776, 1.49729)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(1.5, -63)
+polygon = PackedVector2Array(895.5, 95.5, 1216.5, 96, 1215.5, 414, 897, 413, 897.5, 380, 1182, 381, 1183, 125.5, 897.5, 127)
+
+[node name="door" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="door"]
+position = Vector2(1194.25, 191.75)
+shape = SubResource("RectangleShape2D_e5vpk")
+
+[editable path="wall_area"]

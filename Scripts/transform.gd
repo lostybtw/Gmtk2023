@@ -21,20 +21,22 @@ func _physics_process(delta):
 		if Input.is_action_just_pressed("mouseleft"):
 			if node_name != "":
 				transformation(node_name)
-
+			else:
+				node_name = ""
 
 func _on_wall_area_mouse_entered():
 	node_name = "Wall"
-	print("wall")
-
 func _on_box_area_entered():
 	node_name = "Box"
-
 func _on_player_mouse_entered():
 	node_name = "player"
-
 func _on_wall_area_2_mouse_entered():
 	node_name = "Wall2"
-	
 func _on_goal_area_mouse_entered():
 	node_name = "goal"
+func _on_wall_area_3_mouse_entered():
+	node_name = "Wall3"
+func _on_wall_area_4_mouse_entered():
+	node_name = "Wall4"
+func _on_wall_area_mouse_exited():
+	node_name = ""
