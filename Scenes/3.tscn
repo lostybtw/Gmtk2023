@@ -1,0 +1,170 @@
+[gd_scene load_steps=9 format=3 uid="uid://dx632rw8ywi04"]
+
+[ext_resource type="Script" path="res://Scripts/1.gd" id="1_3b6bw"]
+[ext_resource type="PackedScene" uid="uid://v1ajtejv0ou7" path="res://Prefabs/bg.tscn" id="1_ngblf"]
+[ext_resource type="PackedScene" uid="uid://lu8ds8g11asq" path="res://Prefabs/player.tscn" id="2_0d6em"]
+[ext_resource type="PackedScene" uid="uid://cvexdp5bta3nx" path="res://Prefabs/UI.tscn" id="3_evwe0"]
+[ext_resource type="PackedScene" uid="uid://dq5qduwy80lu8" path="res://Prefabs/transform_obj.tscn" id="4_c230n"]
+[ext_resource type="TileSet" uid="uid://huffbxkh41s7" path="res://Scenes/2.tres" id="5_e8yew"]
+[ext_resource type="AudioStream" uid="uid://djhekuj2jbpyy" path="res://Assets/song1.wav" id="7_y0ogb"]
+[ext_resource type="Texture2D" uid="uid://y7scvckkhp3o" path="res://Assets/box.png" id="8_q1g12"]
+
+[node name="3" type="Node2D"]
+script = ExtResource("1_3b6bw")
+
+[node name="bg" parent="." instance=ExtResource("1_ngblf")]
+position = Vector2(200, 250)
+
+[node name="Wall" type="CharacterBody2D" parent="."]
+modulate = Color(1, 0.384314, 0.239216, 1)
+self_modulate = Color(1, 0.654902, 0.615686, 1)
+position = Vector2(0, 2)
+
+[node name="TileMap" type="TileMap" parent="Wall"]
+position = Vector2(-332, 502)
+scale = Vector2(4, 4)
+tile_set = ExtResource("5_e8yew")
+format = 2
+layer_0/tile_data = PackedInt32Array(-327670, 0, 0, -327669, 0, 0, -327668, 0, 0, -327667, 0, 0, -327666, 0, 0, -327665, 0, 0, -327664, 0, 0, -327663, 0, 0, -327662, 0, 0, -327661, 0, 0, -327660, 0, 0, -327659, 0, 0, -327658, 0, 0, -327657, 0, 0, -327656, 0, 0, -327655, 0, 0, -327654, 0, 0, -327653, 0, 0, -327652, 0, 0, -327651, 0, 0, -327650, 0, 0, -327649, 0, 0, -327648, 0, 0, -327647, 0, 0, -327646, 0, 0)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Wall"]
+position = Vector2(-1484, 17)
+polygon = PackedVector2Array(1785, 166, 3393, 168, 3395, 225, 1791, 230, 1792, 157)
+
+[node name="wall_area" parent="Wall" instance=ExtResource("4_c230n")]
+
+[node name="CollisionPolygon2D" parent="Wall/wall_area" index="0"]
+position = Vector2(1608, 795)
+scale = Vector2(27.5533, 23.0417)
+polygon = PackedVector2Array(11.1057, -23.8264, -47.2902, -23.9132, -47.3627, -26.9511, 10.7791, -26.4303)
+
+[node name="Wall2" type="CharacterBody2D" parent="."]
+modulate = Color(1, 0.384314, 0.239216, 1)
+self_modulate = Color(1, 0.654902, 0.615686, 1)
+position = Vector2(0, 690)
+
+[node name="TileMap" type="TileMap" parent="Wall2"]
+position = Vector2(-332, 502)
+scale = Vector2(4, 4)
+tile_set = ExtResource("5_e8yew")
+format = 2
+layer_0/tile_data = PackedInt32Array(-327670, 0, 0, -327669, 0, 0, -327668, 0, 0, -327667, 0, 0, -327666, 0, 0, -327665, 0, 0, -327664, 0, 0, -327663, 0, 0, -327662, 0, 0, -327661, 0, 0, -327660, 0, 0, -327659, 0, 0, -327658, 0, 0, -327657, 0, 0, -327656, 0, 0, -327655, 0, 0, -327654, 0, 0, -327653, 0, 0, -327652, 0, 0, -327651, 0, 0, -327650, 0, 0, -327649, 0, 0, -327648, 0, 0, -327647, 0, 0, -327646, 0, 0)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Wall2"]
+position = Vector2(-1484, 17)
+polygon = PackedVector2Array(1785, 166, 3393, 168, 3395, 225, 1791, 230, 1792, 157)
+
+[node name="wall_area" parent="Wall2" instance=ExtResource("4_c230n")]
+
+[node name="CollisionPolygon2D" parent="Wall2/wall_area" index="0"]
+position = Vector2(1608, 795)
+scale = Vector2(27.5533, 23.0417)
+polygon = PackedVector2Array(11.1057, -23.8264, -47.2902, -23.9132, -47.3627, -26.9511, 10.7791, -26.4303)
+
+[node name="Wall3" type="CharacterBody2D" parent="."]
+modulate = Color(1, 0.384314, 0.239216, 1)
+self_modulate = Color(1, 0.654902, 0.615686, 1)
+position = Vector2(-203, 536)
+
+[node name="TileMap" type="TileMap" parent="Wall3"]
+position = Vector2(-332, 502)
+scale = Vector2(4, 4)
+tile_set = ExtResource("5_e8yew")
+format = 2
+layer_0/tile_data = PackedInt32Array(-786420, 0, 0, -720884, 0, 0, -655348, 0, 0, -589812, 0, 0, -524276, 0, 0, -458740, 0, 0, -393204, 0, 0, -327668, 0, 0, -262132, 0, 0, -196596, 0, 0, -851956, 0, 0)
+
+[node name="wall_area" parent="Wall3" instance=ExtResource("4_c230n")]
+
+[node name="CollisionPolygon2D" parent="Wall3/wall_area" index="0"]
+position = Vector2(1608, 3090.54)
+scale = Vector2(27.5533, 123.332)
+polygon = PackedVector2Array(-40.0315, -22.0425, -42.4994, -22.0182, -42.5357, -27.7182, -40.2856, -27.7669)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Wall3"]
+polygon = PackedVector2Array(436, -327, 435, 375, 498, 374, 495, -327)
+
+[node name="Wall4" type="CharacterBody2D" parent="."]
+modulate = Color(1, 0.384314, 0.239216, 1)
+self_modulate = Color(1, 0.654902, 0.615686, 1)
+position = Vector2(1473, 536)
+
+[node name="TileMap" type="TileMap" parent="Wall4"]
+position = Vector2(-332, 502)
+scale = Vector2(4, 4)
+tile_set = ExtResource("5_e8yew")
+format = 2
+layer_0/tile_data = PackedInt32Array(-786420, 0, 0, -720884, 0, 0, -655348, 65536, 1, -589812, 65536, 1, -524276, 65536, 1, -458740, 0, 0, -393204, 0, 0, -327668, 0, 0, -262132, 0, 0, -196596, 0, 0, -851956, 0, 0)
+
+[node name="wall_area" parent="Wall4" instance=ExtResource("4_c230n")]
+
+[node name="CollisionPolygon2D" parent="Wall4/wall_area" index="0"]
+position = Vector2(1608, 3090.54)
+scale = Vector2(27.5533, 123.332)
+polygon = PackedVector2Array(-40.0315, -22.0425, -42.4994, -22.0182, -42.5357, -27.7182, -40.2856, -27.7669)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Wall4"]
+polygon = PackedVector2Array(436, -327, 435, 375, 498, 374, 495, -327)
+
+[node name="Area2D" type="Area2D" parent="Wall4"]
+
+[node name="spikes" type="CollisionPolygon2D" parent="Wall4/Area2D"]
+polygon = PackedVector2Array(502, 54, 464, 54, 436, 26, 436, 18, 463, -8, 463, -13, 436, -38, 436, -45, 463, -72, 463, -77, 437, -102, 437, -110, 464, -138, 500, -138)
+
+[node name="music" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("7_y0ogb")
+volume_db = -5.0
+autoplay = true
+
+[node name="Box" type="CharacterBody2D" parent="."]
+position = Vector2(1283, 625)
+scale = Vector2(0.5, 0.5)
+
+[node name="box_sprite" type="Sprite2D" parent="Box"]
+modulate = Color(0.85098, 0.517647, 0.466667, 1)
+texture = ExtResource("8_q1g12")
+
+[node name="box_area" parent="Box" instance=ExtResource("4_c230n")]
+
+[node name="CollisionPolygon2D" parent="Box/box_area" index="0"]
+position = Vector2(1608, 3090.54)
+scale = Vector2(27.5533, 123.332)
+polygon = PackedVector2Array(-55.311, -24.3777, -61.3357, -24.3777, -61.3357, -25.7236, -55.3836, -25.7236)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Box"]
+position = Vector2(1608, 3090.54)
+scale = Vector2(27.5533, 123.332)
+polygon = PackedVector2Array(-55.311, -24.3777, -61.3357, -24.3777, -61.3357, -25.7236, -55.3836, -25.7236)
+
+[node name="player" parent="." instance=ExtResource("2_0d6em")]
+position = Vector2(128, 194)
+
+[node name="UI" parent="player" instance=ExtResource("3_evwe0")]
+position = Vector2(-64, -97)
+scale = Vector2(0.5, 0.5)
+
+[node name="wall_area" parent="player" instance=ExtResource("4_c230n")]
+position = Vector2(233, 226)
+
+[node name="CollisionPolygon2D" parent="player/wall_area" index="0"]
+polygon = PackedVector2Array(-7, 22, -8, -57, 25, -57, 25, 22)
+
+[node name="Camera2D" type="Camera2D" parent="player"]
+offset = Vector2(960, 350)
+zoom = Vector2(0.9, 0.9)
+
+[connection signal="mouse_entered" from="Wall/wall_area" to="player/UI" method="_on_wall_area_mouse_entered"]
+[connection signal="mouse_entered" from="Wall2/wall_area" to="player/UI" method="_on_wall_area_mouse_entered"]
+[connection signal="mouse_entered" from="Wall3/wall_area" to="player/UI" method="_on_wall_area_3_mouse_entered"]
+[connection signal="mouse_entered" from="Wall4/wall_area" to="player/UI" method="_on_wall_area_3_mouse_entered"]
+[connection signal="body_entered" from="Wall4/Area2D" to="player" method="_on_area_2d_body_entered"]
+[connection signal="mouse_entered" from="Box/box_area" to="player/UI" method="_on_box_area_mouse_entered"]
+[connection signal="mouse_entered" from="player/wall_area" to="player/UI" method="_on_player_mouse_entered"]
+[connection signal="mouse_exited" from="player/wall_area" to="player/UI" method="_on_wall_area_mouse_exited"]
+
+[editable path="Wall/wall_area"]
+[editable path="Wall2/wall_area"]
+[editable path="Wall3/wall_area"]
+[editable path="Wall4/wall_area"]
+[editable path="Box/box_area"]
+[editable path="player/wall_area"]

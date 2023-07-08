@@ -29,6 +29,8 @@ func move():
 func _physics_process(delta):
 	move()
 
-
-func _on_wall_area_mouse_entered():
-	pass # Replace with function body.
+func _on_area_2d_body_entered(body):
+	if body.name == "player":
+		SceneTransition.change_scenes(get_tree().current_scene.get_path())
+	if body.name == "Box":
+		body.visible = false

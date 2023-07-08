@@ -142,7 +142,7 @@ scale = Vector2(27.5533, 23.0417)
 polygon = PackedVector2Array(30.6315, 8.28932, 33.0995, 8.54972, 33.1358, -22.0904, 30.7767, -21.6998)
 
 [node name="player" parent="." instance=ExtResource("2_q0orx")]
-position = Vector2(128, 194)
+position = Vector2(-490, 344)
 
 [node name="UI" parent="player" instance=ExtResource("3_ifxcl")]
 position = Vector2(-64, -97)

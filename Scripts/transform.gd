@@ -26,7 +26,7 @@ func _physics_process(delta):
 
 func _on_wall_area_mouse_entered():
 	node_name = "Wall"
-func _on_box_area_entered():
+func _on_box_area_mouse_entered():
 	node_name = "Box"
 func _on_player_mouse_entered():
 	node_name = "player"
