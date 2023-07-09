@@ -1,0 +1,54 @@
+[gd_scene load_steps=2 format=3 uid="uid://cx07wx7wmsax4"]
+
+[ext_resource type="Texture2D" uid="uid://dsv1u0svg2230" path="res://Assets/gregory-ligman-brickwall.jpg" id="1_u2ylk"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_u2ylk")
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+offset_left = 1080.0
+offset_top = -2.0
+offset_right = 2160.0
+offset_bottom = 1078.0
+texture = ExtResource("1_u2ylk")
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -843.0
+offset_top = 124.0
+offset_right = 957.0
+offset_bottom = 280.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.556863, 0, 0.219608, 1)
+theme_override_font_sizes/font_size = 90
+text = "About
+"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -868.0
+offset_top = -270.0
+offset_right = 1127.0
+offset_bottom = 424.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 50
+text = "Hi, I am a 14 year old from India, Call Me Lostybtw.
+I like gamedev  and have been doing it casually for about 3 years
+I suppourt free software and use linux as my primary operating system
+So, This game's source files are at:
+-> https://github.com/lostybtw/Gmtk2023
+
+Thanks For Reading, Please Rate This As Good!"

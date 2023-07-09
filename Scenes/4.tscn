@@ -1,0 +1,236 @@
+[gd_scene load_steps=16 format=3 uid="uid://meexugvktg3x"]
+
+[ext_resource type="Script" path="res://Scripts/1.gd" id="1_0wy7h"]
+[ext_resource type="PackedScene" uid="uid://v1ajtejv0ou7" path="res://Prefabs/bg.tscn" id="1_x7jfa"]
+[ext_resource type="PackedScene" uid="uid://lu8ds8g11asq" path="res://Prefabs/player.tscn" id="2_wqfrk"]
+[ext_resource type="TileSet" uid="uid://huffbxkh41s7" path="res://Scenes/2.tres" id="3_8qepu"]
+[ext_resource type="PackedScene" uid="uid://cvexdp5bta3nx" path="res://Prefabs/UI.tscn" id="3_rfwwv"]
+[ext_resource type="PackedScene" uid="uid://dq5qduwy80lu8" path="res://Prefabs/transform_obj.tscn" id="4_wmtht"]
+[ext_resource type="AudioStream" uid="uid://ddrhcf81x7j8" path="res://Assets/song1.mp3" id="5_qmw64"]
+[ext_resource type="Texture2D" uid="uid://b2sr41xnig3vt" path="res://Assets/treble.png" id="7_6eihq"]
+[ext_resource type="Texture2D" uid="uid://dd3tbf6ps1bo5" path="res://Assets/bass.png" id="8_e1glf"]
+[ext_resource type="Script" path="res://Scripts/goal.gd" id="10_o3vq0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tvrsx"]
+size = Vector2(266, 321)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8hp5i"]
+size = Vector2(32, 32.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1fhhp"]
+size = Vector2(112, 122.25)
+
+[sub_resource type="Gradient" id="Gradient_lie6u"]
+offsets = PackedFloat32Array(0, 0.76129)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_yvshk"]
+gradient = SubResource("Gradient_lie6u")
+width = 500
+height = 500
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="4" type="Node2D"]
+script = ExtResource("1_0wy7h")
+
+[node name="bg" parent="." instance=ExtResource("1_x7jfa")]
+position = Vector2(200, 250)
+
+[node name="Wall" type="CharacterBody2D" parent="."]
+modulate = Color(1, 0.384314, 0.239216, 1)
+self_modulate = Color(1, 0.654902, 0.615686, 1)
+
+[node name="TileMap" type="TileMap" parent="Wall"]
+position = Vector2(960, 540)
+scale = Vector2(4, 4)
+tile_set = ExtResource("3_8qepu")
+format = 2
+layer_0/tile_data = PackedInt32Array(327693, 0, 0, 327694, 0, 0, 262158, 0, 0, 262157, 0, 0, 196621, 0, 0, 196622, 0, 0, 131086, 0, 0, 131085, 0, 0, 65549, 0, 0, 65550, 0, 0, 14, 0, 0, -65522, 0, 0, -65523, 0, 0, -131059, 0, 0, -196595, 0, 0, -262131, 0, 0, -327667, 0, 0, -393203, 0, 0, -393202, 0, 0, -327666, 0, 0, -262130, 0, 0, -196594, 0, 0, -131058, 0, 0, 13, 0, 0)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Wall"]
+polygon = PackedVector2Array(1792, 157, 1919, 159, 1913, 923, 1797, 921, 1792, 157)
+
+[node name="wall_area" parent="Wall" instance=ExtResource("4_wmtht")]
+
+[node name="CollisionPolygon2D" parent="Wall/wall_area" index="0"]
+position = Vector2(971, 667)
+scale = Vector2(27.5533, 23.0417)
+polygon = PackedVector2Array(29.6153, 11.0235, 34.1883, 11.1103, 34.406, -22.3942, 29.7605, -22.3942)
+
+[node name="music" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("5_qmw64")
+volume_db = -5.0
+autoplay = true
+
+[node name="Wall2" type="CharacterBody2D" parent="."]
+modulate = Color(1, 0.384314, 0.239216, 1)
+self_modulate = Color(1, 0.654902, 0.615686, 1)
+
+[node name="TileMap" type="TileMap" parent="Wall2"]
+position = Vector2(960, 540)
+scale = Vector2(4, 4)
+tile_set = ExtResource("3_8qepu")
+format = 2
+layer_0/tile_data = PackedInt32Array(-458762, 0, 0, -458761, 0, 0, -458760, 0, 0, -458759, 0, 0, -458758, 0, 0, -458757, 0, 0, -458756, 0, 0, -458755, 0, 0, -458754, 0, 0, -458753, 0, 0, -524288, 0, 0, -524287, 0, 0, -524286, 0, 0, -524285, 0, 0, -524284, 0, 0, -524283, 0, 0, -524282, 0, 0, -524281, 0, 0, -524280, 0, 0, -524279, 0, 0, -524278, 0, 0, -524277, 0, 0, -524276, 0, 0, -524275, 0, 0, -458742, 0, 0, -458743, 0, 0, -458741, 0, 0, -458740, 0, 0, -393222, 0, 0, -393220, 0, 0, -393219, 0, 0, -393218, 0, 0, -393221, 0, 0, -393217, 0, 0, -458752, 0, 0, -458751, 0, 0, -458750, 0, 0, -458749, 0, 0, -458748, 0, 0, -458747, 0, 0, -458746, 0, 0, -458745, 0, 0, -458744, 0, 0, 393229, 0, 0, 458764, 0, 0, 458763, 0, 0, 458762, 0, 0, 458761, 0, 0, 458760, 0, 0, 458759, 0, 0, 393228, 0, 0, 393227, 0, 0, 393226, 0, 0, 393225, 0, 0, 393224, 0, 0, 393223, 0, 0, 458743, 0, 0, 458744, 0, 0, 458745, 0, 0, 458746, 0, 0, 458747, 0, 0, 458748, 0, 0, 458749, 0, 0, 458750, 0, 0, 458751, 0, 0, 393216, 0, 0, 393217, 0, 0, 393218, 0, 0, 393219, 0, 0, 393220, 0, 0, 393221, 0, 0, 393222, 0, 0, 458758, 0, 0, 458757, 0, 0, 458756, 0, 0, 458755, 0, 0, 458754, 0, 0, 458753, 0, 0, 458752, 0, 0, 524287, 0, 0, 524286, 0, 0, 524285, 0, 0, 524284, 0, 0, 524283, 0, 0, 524282, 0, 0, 524281, 0, 0, 524280, 0, 0, 524279, 0, 0, -327692, 0, 0, -262156, 0, 0, -196620, 0, 0, -131084, 0, 0, -65548, 0, 0, -12, 0, 0, 65524, 0, 0, 131060, 0, 0, 196596, 0, 0, 262132, 0, 0, 327668, 0, 0, 393204, 0, 0, 458740, 0, 0, 458741, 0, 0, 458742, 0, 0, 524278, 0, 0, 524277, 0, 0, 524276, 0, 0, -393227, 0, 0, -393228, 0, 0, -327691, 0, 0, -262155, 0, 0, -196619, 0, 0, -65547, 0, 0, -131083, 0, 0, -11, 0, 0, 65525, 0, 0, 196597, 0, 0, 262133, 0, 0, 327669, 0, 0, 393205, 0, 0, 131061, 0, 0, -458763, 0, 0, -458764, 0, 0, -524274, 0, 0, -458738, 0, 0, -458739, 0, 0, -393223, 0, 0, -393226, 0, 0, -393225, 0, 0, -393224, 0, 0, 393230, 0, 0, 458766, 0, 0, 458765, 0, 0)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Wall2"]
+polygon = PackedVector2Array(322, 156, 320, 921, 1913, 935, 1920, 1049, 193, 1053, 192.073, 102.769, 192, 28, 1919, 28, 1915, 159)
+
+[node name="wall_area" parent="Wall2" instance=ExtResource("4_wmtht")]
+
+[node name="CollisionPolygon2D" parent="Wall2/wall_area" index="0"]
+position = Vector2(731, 653)
+scale = Vector2(27.5533, 23.0417)
+polygon = PackedVector2Array(-19.5258, -27.5153, -19.2354, 17.0126, 42.9713, 17.273, 42.9713, 11.9783, -14.7351, 11.8047, -14.8077, -21.5262, 43.189, -21.3526, 43.1164, -26.9077)
+
+[node name="clef_place" type="CharacterBody2D" parent="."]
+
+[node name="TileMap" type="TileMap" parent="clef_place"]
+scale = Vector2(4, 4)
+tile_set = ExtResource("3_8qepu")
+format = 2
+layer_0/tile_data = PackedInt32Array(196632, 196608, 0, 262168, 196608, 0, 327704, 196608, 0, 393240, 196608, 0, 393241, 196608, 0, 393242, 196608, 0, 393243, 196608, 0, 131096, 196608, 0)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="clef_place"]
+polygon = PackedVector2Array(1536, 131, 1536, 447, 1793, 448, 1793, 383, 1602, 383, 1601, 129)
+
+[node name="wall_area" parent="clef_place" instance=ExtResource("4_wmtht")]
+
+[node name="CollisionPolygon2D" parent="clef_place/wall_area" index="0"]
+position = Vector2(1063, 415)
+scale = Vector2(9.45333, 6.13832)
+polygon = PackedVector2Array(49.8237, -46.7555, 57.0169, -46.4297, 56.5938, -5.37608, 77.2214, -5.21317, 77.1157, 5.21315, 49.9295, 5.37606)
+
+[node name="Area2D" type="Area2D" parent="clef_place"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="clef_place/Area2D"]
+position = Vector2(1662, 287.5)
+shape = SubResource("RectangleShape2D_tvrsx")
+
+[node name="bass" type="CharacterBody2D" parent="."]
+position = Vector2(1210, 544)
+scale = Vector2(0.5, 0.5)
+
+[node name="Sprite2D" type="Sprite2D" parent="bass"]
+modulate = Color(0.745098, 0.313726, 0.188235, 1)
+position = Vector2(34, 26)
+texture = ExtResource("8_e1glf")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="bass"]
+position = Vector2(34, 26)
+polygon = PackedVector2Array(-64, -8, -104, -4, -136, -32, -134, -80, -90, -134, 0, -136, 120, -90, 120, 4, -46, 132, -86, 136, -86, 126, 16, 14, 16, -66, -12, -96)
+
+[node name="wall_area" parent="bass" instance=ExtResource("4_wmtht")]
+
+[node name="CollisionPolygon2D" parent="bass/wall_area" index="0"]
+polygon = PackedVector2Array(-142, -156, -128, 180, 194, 184, 190, -130)
+
+[node name="treble" type="CharacterBody2D" parent="."]
+position = Vector2(737, 358)
+scale = Vector2(0.5, 0.5)
+
+[node name="Sprite2D" type="Sprite2D" parent="treble"]
+modulate = Color(0.745098, 0.313726, 0.188235, 1)
+position = Vector2(66, 76)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("7_6eihq")
+
+[node name="wall_area" parent="treble" instance=ExtResource("4_wmtht")]
+
+[node name="CollisionPolygon2D" parent="treble/wall_area" index="0"]
+polygon = PackedVector2Array(-142, -156, -128, 180, 194, 184, 190, -130)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="treble"]
+polygon = PackedVector2Array(0, -104, 20, -128, 42, -128, 58, -94, 60, -68, 20, -24, 18, -10, 48, 4, 66, 16, 72, 26, 72, 56, 68, 68, 42, 82, 48, 86, 48, 124, 30, 148, -12, 148, -36, 130, -36, 102, -30, 102, -30, 94, -8, 94, 0, 100, 0, 122, -6, 128, -18, 130, -16, 134, -6, 136, -4, 140, 24, 142, 38, 118, 44, 118, 44, 94, 38, 94, 34, 80, -20, 70, -42, 40, -42, 18, -30, -8, 4, -40, 2, -50)
+
+[node name="Label" type="Label" parent="."]
+offset_left = 732.0
+offset_top = 804.0
+offset_right = 1114.0
+offset_bottom = 842.0
+theme_override_font_sizes/font_size = 25
+text = "Stop Doing this! Give us an exit! 
+Wait Maybe its about music...
+Try moving the clefs into the wall gap
+"
+
+[node name="goal" type="CharacterBody2D" parent="."]
+visible = false
+modulate = Color(1, 0.384314, 0.239216, 1)
+self_modulate = Color(1, 0.654902, 0.615686, 1)
+position = Vector2(59, -807)
+scale = Vector2(2, 2)
+script = ExtResource("10_o3vq0")
+
+[node name="TileMap" type="TileMap" parent="goal"]
+position = Vector2(4, -2)
+scale = Vector2(2, 2)
+tile_set = ExtResource("3_8qepu")
+format = 2
+layer_0/tile_data = PackedInt32Array(327695, 65536, 0)
+
+[node name="wall_area" parent="goal" instance=ExtResource("4_wmtht")]
+
+[node name="CollisionPolygon2D" parent="goal/wall_area" index="0"]
+position = Vector2(-155.5, 278)
+scale = Vector2(27.5533, 23.0417)
+polygon = PackedVector2Array(22.7196, -5.72874, 22.7196, -2.99457, 24.6976, -3.01627, 24.7157, -5.64195)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="goal"]
+position = Vector2(499, 175.25)
+shape = SubResource("RectangleShape2D_8hp5i")
+
+[node name="door" type="Area2D" parent="goal"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="goal/door"]
+position = Vector2(494, 177.5)
+shape = SubResource("RectangleShape2D_1fhhp")
+
+[node name="PointLight2D" type="PointLight2D" parent="goal"]
+position = Vector2(499, 177.5)
+scale = Vector2(2, 2)
+color = Color(0.678431, 0.298039, 0.0588235, 1)
+energy = 3.0
+texture = SubResource("GradientTexture2D_yvshk")
+
+[node name="player" parent="." instance=ExtResource("2_wqfrk")]
+position = Vector2(59, 227)
+
+[node name="UI" parent="player" instance=ExtResource("3_rfwwv")]
+position = Vector2(-64, -97)
+scale = Vector2(0.5, 0.5)
+
+[node name="wall_area" parent="player" instance=ExtResource("4_wmtht")]
+position = Vector2(233, 226)
+
+[node name="CollisionPolygon2D" parent="player/wall_area" index="0"]
+polygon = PackedVector2Array(-7, 22, -8, -57, 25, -57, 25, 22)
+
+[node name="Camera2D" type="Camera2D" parent="player"]
+offset = Vector2(960, 350)
+zoom = Vector2(0.9, 0.9)
+
+[connection signal="mouse_entered" from="Wall/wall_area" to="player/UI" method="_on_wall_area_mouse_entered"]
+[connection signal="mouse_exited" from="Wall/wall_area" to="player/UI" method="_on_wall_area_mouse_exited"]
+[connection signal="mouse_entered" from="Wall2/wall_area" to="player/UI" method="_on_wall_area_2_mouse_entered"]
+[connection signal="mouse_exited" from="Wall2/wall_area" to="player/UI" method="_on_wall_area_mouse_exited"]
+[connection signal="mouse_entered" from="clef_place/wall_area" to="player/UI" method="_on_clef_area_mouse_entered"]
+[connection signal="mouse_exited" from="clef_place/wall_area" to="player/UI" method="_on_wall_area_mouse_exited"]
+[connection signal="body_entered" from="clef_place/Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="mouse_entered" from="bass/wall_area" to="player/UI" method="_on_bass_area_mouse_entered"]
+[connection signal="mouse_exited" from="bass/wall_area" to="player/UI" method="_on_wall_area_mouse_exited"]
+[connection signal="mouse_entered" from="treble/wall_area" to="player/UI" method="_on_treble_area_mouse_entered"]
+[connection signal="mouse_exited" from="treble/wall_area" to="player/UI" method="_on_wall_area_mouse_exited"]
+[connection signal="body_entered" from="goal/door" to="." method="_on_goal4_body_entered"]
+[connection signal="mouse_entered" from="player/wall_area" to="player/UI" method="_on_player_mouse_entered"]
+[connection signal="mouse_exited" from="player/wall_area" to="player/UI" method="_on_wall_area_mouse_exited"]
+
+[editable path="Wall/wall_area"]
+[editable path="Wall2/wall_area"]
+[editable path="clef_place/wall_area"]
+[editable path="bass/wall_area"]
+[editable path="treble/wall_area"]
+[editable path="goal/wall_area"]
+[editable path="player/wall_area"]

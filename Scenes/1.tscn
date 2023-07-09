@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://v1ajtejv0ou7" path="res://Prefabs/bg.tscn" id="2_vbo0w"]
 [ext_resource type="TileSet" uid="uid://huffbxkh41s7" path="res://Scenes/2.tres" id="3_pxdxj"]
 [ext_resource type="PackedScene" uid="uid://dq5qduwy80lu8" path="res://Prefabs/transform_obj.tscn" id="5_gac0d"]
-[ext_resource type="AudioStream" uid="uid://djhekuj2jbpyy" path="res://Assets/song1.wav" id="7_ipawk"]
+[ext_resource type="AudioStream" uid="uid://ddrhcf81x7j8" path="res://Assets/song1.mp3" id="7_xn47w"]
 
 [sub_resource type="Gradient" id="Gradient_n63lg"]
 offsets = PackedFloat32Array(0, 0.76129)
@@ -137,7 +137,7 @@ Pro Tip: red crossair = walls"
 
 [node name="music" type="AudioStreamPlayer" parent="."]
 process_mode = 3
-stream = ExtResource("7_ipawk")
+stream = ExtResource("7_xn47w")
 volume_db = -5.0
 autoplay = true
 

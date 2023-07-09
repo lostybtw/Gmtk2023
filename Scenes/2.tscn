@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cvexdp5bta3nx" path="res://Prefabs/UI.tscn" id="3_ifxcl"]
 [ext_resource type="PackedScene" uid="uid://dq5qduwy80lu8" path="res://Prefabs/transform_obj.tscn" id="5_4uyfg"]
 [ext_resource type="Script" path="res://Scripts/goal.gd" id="7_r0nyx"]
-[ext_resource type="AudioStream" uid="uid://djhekuj2jbpyy" path="res://Assets/song1.wav" id="8_eb45i"]
+[ext_resource type="AudioStream" uid="uid://ddrhcf81x7j8" path="res://Assets/song1.mp3" id="8_1wj6h"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r5msy"]
 size = Vector2(112, 122.25)
@@ -15,12 +15,12 @@ size = Vector2(112, 122.25)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e1kmk"]
 size = Vector2(32, 32.5)
 
-[sub_resource type="Gradient" id="Gradient_ka7uv"]
+[sub_resource type="Gradient" id="Gradient_egy57"]
 offsets = PackedFloat32Array(0, 0.76129)
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_x1l7i"]
-gradient = SubResource("Gradient_ka7uv")
+gradient = SubResource("Gradient_egy57")
 width = 500
 height = 500
 fill = 1
@@ -141,23 +141,6 @@ position = Vector2(997, 750)
 scale = Vector2(27.5533, 23.0417)
 polygon = PackedVector2Array(30.6315, 8.28932, 33.0995, 8.54972, 33.1358, -22.0904, 30.7767, -21.6998)
 
-[node name="player" parent="." instance=ExtResource("2_q0orx")]
-position = Vector2(-490, 344)
-
-[node name="UI" parent="player" instance=ExtResource("3_ifxcl")]
-position = Vector2(-64, -97)
-scale = Vector2(0.5, 0.5)
-
-[node name="wall_area" parent="player" instance=ExtResource("5_4uyfg")]
-position = Vector2(233, 226)
-
-[node name="CollisionPolygon2D" parent="player/wall_area" index="0"]
-polygon = PackedVector2Array(-7, 22, -8, -57, 25, -57, 25, 22)
-
-[node name="Camera2D" type="Camera2D" parent="player"]
-offset = Vector2(960, 350)
-zoom = Vector2(0.9, 0.9)
-
 [node name="goal" type="CharacterBody2D" parent="."]
 visible = false
 modulate = Color(1, 0.384314, 0.239216, 1)
@@ -179,16 +162,19 @@ layer_0/tile_data = PackedInt32Array(327695, 65536, 0)
 position = Vector2(-155.5, 278)
 scale = Vector2(27.5533, 23.0417)
 polygon = PackedVector2Array(22.7196, -5.72874, 22.7196, -2.99457, 24.6976, -3.01627, 24.7157, -5.64195)
+disabled = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="goal"]
 position = Vector2(499, 175.25)
 shape = SubResource("RectangleShape2D_e1kmk")
+disabled = true
 
 [node name="door" type="Area2D" parent="goal"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="goal/door"]
 position = Vector2(494, 177.5)
 shape = SubResource("RectangleShape2D_r5msy")
+disabled = true
 
 [node name="PointLight2D" type="PointLight2D" parent="goal"]
 position = Vector2(499, 177.5)
@@ -196,13 +182,41 @@ color = Color(0.678431, 0.298039, 0.0588235, 1)
 energy = 3.0
 texture = SubResource("GradientTexture2D_x1l7i")
 
+[node name="player" parent="." instance=ExtResource("2_q0orx")]
+position = Vector2(-490, 344)
+
+[node name="UI" parent="player" instance=ExtResource("3_ifxcl")]
+position = Vector2(-64, -97)
+scale = Vector2(0.5, 0.5)
+
+[node name="wall_area" parent="player" instance=ExtResource("5_4uyfg")]
+position = Vector2(233, 226)
+
+[node name="CollisionPolygon2D" parent="player/wall_area" index="0"]
+polygon = PackedVector2Array(-7, 22, -8, -57, 25, -57, 25, 22)
+
+[node name="Camera2D" type="Camera2D" parent="player"]
+offset = Vector2(960, 350)
+zoom = Vector2(0.9, 0.9)
+
 [node name="music" type="AudioStreamPlayer" parent="."]
 process_mode = 3
-stream = ExtResource("8_eb45i")
+stream = ExtResource("8_1wj6h")
 volume_db = -5.0
 autoplay = true
 
-[connection signal="body_entered" from="from/door" to="goal" method="_on_door_body_entered"]
+[node name="Label" type="Label" parent="."]
+offset_left = 930.0
+offset_top = 340.0
+offset_right = 1073.0
+offset_bottom = 391.0
+theme_override_font_sizes/font_size = 25
+text = "Hmm, No doors to the next level?
+Exchanging walls can open windows y'know?
+
+up down left right"
+
+[connection signal="body_entered" from="from/door" to="goal" method="_on_door_2_left_body_entered"]
 [connection signal="mouse_entered" from="Wall/wall_area" to="player/UI" method="_on_wall_area_mouse_entered"]
 [connection signal="mouse_exited" from="Wall/wall_area" to="player/UI" method="_on_wall_area_mouse_exited"]
 [connection signal="mouse_entered" from="Wall2/wall_area" to="player/UI" method="_on_wall_area_2_mouse_entered"]
@@ -211,15 +225,15 @@ autoplay = true
 [connection signal="mouse_exited" from="Wall3/wall_area" to="player/UI" method="_on_wall_area_mouse_exited"]
 [connection signal="mouse_entered" from="Wall4/wall_area" to="player/UI" method="_on_wall_area_4_mouse_entered"]
 [connection signal="mouse_exited" from="Wall4/wall_area" to="player/UI" method="_on_wall_area_mouse_exited"]
-[connection signal="mouse_entered" from="player/wall_area" to="player/UI" method="_on_player_mouse_entered"]
-[connection signal="mouse_exited" from="player/wall_area" to="player/UI" method="_on_wall_area_mouse_exited"]
 [connection signal="mouse_entered" from="goal/wall_area" to="player/UI" method="_on_goal_area_mouse_entered"]
 [connection signal="mouse_exited" from="goal/wall_area" to="player/UI" method="_on_wall_area_mouse_exited"]
 [connection signal="body_entered" from="goal/door" to="goal" method="_on_door_body_entered"]
+[connection signal="mouse_entered" from="player/wall_area" to="player/UI" method="_on_player_mouse_entered"]
+[connection signal="mouse_exited" from="player/wall_area" to="player/UI" method="_on_wall_area_mouse_exited"]
 
 [editable path="Wall/wall_area"]
 [editable path="Wall2/wall_area"]
 [editable path="Wall3/wall_area"]
 [editable path="Wall4/wall_area"]
-[editable path="player/wall_area"]
 [editable path="goal/wall_area"]
+[editable path="player/wall_area"]
